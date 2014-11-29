@@ -47,10 +47,10 @@
       (str     "#859901")
       (type    "#efef8f")
       (var     "#277082")
-      (warning "#996632")
+      (warning "#b58903")
       
       ;; In simple colors
-      (red "#af322f")
+      (red "#dc322f") ;; af322f
       (blue "#8cd0d3"))
   (custom-theme-set-faces
    'sirthias
@@ -125,9 +125,9 @@
    `(org-sexp-date                        ((,class (:foreground ,fg4))))
 
    ;; Helm
-   `(helm-header                          ((,class (:foreground ,fg2 :background ,bg1 :underline nil :box nil))))
-   `(helm-source-header                   ((,class (:foreground ,keyword :background ,bg1 :underline nil :weight bold))))
-   `(helm-selection                       ((,class (:background ,bg2 :underline nil))))
+   `(helm-header                          ((,class (:foreground ,bg2 :background ,fg1 :underline nil :box nil))))
+   `(helm-source-header                   ((,class (:foreground ,warning :background ,bg1 :underline t :weight bold))))
+   `(helm-selection                       ((,class (:background ,bg2))))
    `(helm-selection-line                  ((,class (:background ,bg2))))
    `(helm-visible-mark                    ((,class (:foreground ,bg1 :background ,bg3))))
    `(helm-candidate-number                ((,class (:foreground ,bg1 :background ,fg1))))
@@ -206,8 +206,6 @@
    `(magit-log-author                     ((,class (:foreground ,fg3))))
    `(magit-hash                           ((,class (:foreground ,fg2))))
    `(magit-diff-file-header               ((,class (:foreground ,fg2 :background ,bg3))))
-
-
 
    `(term                                 ((,class (:foreground ,fg1 :background ,bg1))))
    `(term-color-black                     ((,class (:foreground ,bg3 :background ,bg3))))
