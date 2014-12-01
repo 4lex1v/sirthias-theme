@@ -3,7 +3,7 @@
 ;; Copyright (C) 2014 , Alexander Ivanov <4lex1v@gmail.com>
 
 ;; Author: Alexander Ivanov <4lex1v@gmail.com>
-;; Version: 0.1
+;; Version: 0.1.1
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -29,14 +29,26 @@
 (deftheme sirthias "Sirthias color theme for Emacs")
 
 (let ((class '((class color) (min-colors 89)))
-      (fg1     "#eee8d5") ;; eee8d5 or F7E6D1
+      (fg1     "#eee8d5") ;; Eee8d5 or F7E6D1
       (fg2     "#d9d3c2")
       (fg3     "#c4bfaf")
       (fg4     "#afab9d")
+      
       (bg1     "#002b36")
       (bg2     "#183944")
       (bg3     "#2b4852")
       (bg4     "#3e5861")
+
+      (red "#dc322f")
+      (blue "#8cd0d3")
+      ;; (dark-blue "#005A6F")
+      (alt-blue "#469AD3")
+      (green "#859901")
+      (dark-yellow "#b58903")
+      (light-yellow "#efef8f")
+      (yellow "#E2DA47")
+      (space-gray "#93a1a1")
+      
       (key2    "#e6d3b4")
       (key3    "#c7b597")
       (builtin "#8cd0d3")
@@ -47,55 +59,84 @@
       (str     "#859901")
       (type    "#efef8f")
       (var     "#277082")
-      (warning "#b58903")
+      (warning "#b58903"))
       
       ;; In simple colors
-      (red "#dc322f") ;; af322f
-      (blue "#8cd0d3"))
+       ;; af322f
+      
   (custom-theme-set-faces
    'sirthias
 
    ;; General
-   `(default                              ((,class (:foreground ,fg1 :background ,bg1))))
-   `(isearch                              ((,class (:foreground ,warning :background ,bg3))))
-   `(fringe                               ((,class (:background ,bg1))))
-   `(linum                                ((,class (:foreground ,fg1 :background ,bg2))))
-   `(region                               ((,class (:foreground ,bg1 :background ,fg1))))
-   `(highlight                            ((,class (:foreground ,fg3 :background ,bg3))))
-   `(cursor                               ((,class (:background ,fg1))))
-   `(hl-line                              ((,class (:background ,bg2))))
-   `(show-paren-match-face                ((,class (:foreground ,bg1 :background ,fg4))))
+   `(default        ((,class (:foreground ,fg1 :background ,bg1)))) 
+   `(region         ((,class (:foreground ,bg1 :background ,fg1)))) 
+   `(cursor         ((,class (:background ,fg1)))) 
+   `(highlight      ((,class (:foreground ,fg3 :background ,bg3)))) 
+   `(lazy-highlight ((,class (:foreground ,bg3 :background ,dark-yellow :weight normal))))
+   `(fringe         ((,class (:background ,bg1))))
+   `(hl-line        ((,class (:background ,bg2))))
+   `(link           ((,class (:foreground ,blue :underline t :weight bold))))
+   `(link-visited   ((,class (:foreground ,blue :underline t :weight normal))))
 
-   `(mode-line                            ((,class (:foreground ,bg1 :background ,fg1 :box nil))))
-   `(mode-line-inactive                   ((,class (:foreground ,bg1 :background ,bg1 :box nil))))
-   `(mode-line-buffer-id                  ((,class (:foreground ,bg1 :background nil))))
-   `(mode-line-highlight                  ((,class (:foreground ,bg1 :background ,bg4))))
+   ;; States
+   `(success ((,class (:foreground ,green ))))
+   `(warning ((,class (:foreground ,yellow))))
+   `(error   ((,class (:foreground ,dark-yellow))))
 
-   `(vertical-border                      ((,class (:foreground ,fg3))))
-   `(minibuffer-prompt                    ((,class (:foreground ,keyword :bold t))))
-   `(default-italic                       ((,class (:italic t))))
-   `(link                                 ((,class (:foreground ,const :underline t))))
-   `(warning                              ((,class (:foreground ,warning))))
+   ;; Mode line
+   `(mode-line           ((,class (:foreground ,bg1 :background ,fg1 :box nil))))
+   `(mode-line-buffer-id ((,class (:foreground ,bg1 :weight      bold))))
+   `(mode-line-inactive  ((,class (:foreground ,bg1 :background ,fg1))))
+   `(mode-line-highlight ((,class (:foreground ,bg1 :background ,bg4))))
 
-   ;; Font-lock
-   `(font-lock-builtin-face               ((,class (:foreground ,red))))
-   `(font-lock-comment-face               ((,class (:foreground ,comment))))
-   `(font-lock-negation-char-face         ((,class (:foreground ,const))))
-   `(font-lock-reference-face             ((,class (:foreground ,const))))
-   `(font-lock-constant-face              ((,class (:foreground ,const))))
-   `(font-lock-doc-face                   ((,class (:foreground ,comment))))
-   `(font-lock-keyword-face               ((,class (:foreground ,red))))
-   `(font-lock-string-face                ((,class (:foreground ,str))))
-   `(font-lock-type-face                  ((,class (:foreground ,type))))
-   `(font-lock-function-name-face         ((,class (:foreground ,blue))))
+   ;; Other UI general faces
+   `(menu                  ((,class (:foreground ,fg1 :background ,bg1))))
+   `(minibuffer-prompt     ((,class (:foreground ,red :bold t))))
+   `(linum                 ((,class (:foreground ,fg1 :background ,bg2))))
+   `(show-paren-match-face ((,class (:foreground ,bg1 :background ,fg4))))
+
+   ;; ISearch
+   `(isearch      ((,class (:foreground ,light-yellow :background ,bg3))))
+   `(isearch-fail ((,class (:foreground ,dark-yellow :background ,bg3 :bold t))))
+   
+   ;; ;; Font-lock old
+   ;; `(font-lock-builtin-face               ((,class (:foreground ,red))))
+   ;; `(font-lock-comment-face               ((,class (:foreground ,comment))))
+   ;; `(font-lock-negation-char-face         ((,class (:foreground ,const))))
+   ;; `(font-lock-reference-face             ((,class (:foreground ,const))))
+   ;; `(font-lock-constant-face              ((,class (:foreground ,const))))
+   ;; `(font-lock-doc-face                   ((,class (:foreground ,comment))))
+   ;; `(font-lock-keyword-face               ((,class (:foreground ,red))))
+   ;; `(font-lock-string-face                ((,class (:foreground ,str))))
+   ;; `(font-lock-type-face                  ((,class (:foreground ,type))))
+   ;; `(font-lock-function-name-face         ((,class (:foreground ,blue))))
+   ;; `(font-lock-variable-name-face         ((,class (:foreground ,blue))))
+   ;; `(font-lock-warning-face               ((,class (:foreground ,warning :background ,bg2))))
+   ;; `(font-latex-bold-face                 ((,class (:foreground ,type))))
+   ;; `(font-latex-italic-face               ((,class (:foreground ,key3 :italic t))))
+   ;; `(font-latex-string-face               ((,class (:foreground ,str))))
+   ;; `(font-latex-match-reference-keywords  ((,class (:foreground ,const))))
+   ;; `(font-latex-match-variable-keywords   ((,class (:foreground ,var))))
+
+   ;; Font-lock old
+   `(font-lock-type-face                  ((,class (:foreground ,light-yellow))))
    `(font-lock-variable-name-face         ((,class (:foreground ,blue))))
-   `(font-lock-warning-face               ((,class (:foreground ,warning :background ,bg2))))
-   `(font-latex-bold-face                 ((,class (:foreground ,type))))
-   `(font-latex-italic-face               ((,class (:foreground ,key3 :italic t))))
-   `(font-latex-string-face               ((,class (:foreground ,str))))
-   `(font-latex-match-reference-keywords  ((,class (:foreground ,const))))
-   `(font-latex-match-variable-keywords   ((,class (:foreground ,var))))
+   `(font-lock-function-name-face         ((,class (:foreground ,blue))))
+   `(font-lock-string-face                ((,class (:foreground ,green))))
+   `(font-latex-match-reference-keywords  ((,class (:foreground ,yellow))))
+   `(font-lock-negation-char-face         ((,class (:foreground ,yellow))))
+   `(font-lock-constant-face              ((,class (:foreground ,light-yellow))))
+   `(font-lock-warning-face               ((,class (:foreground ,dark-yellow :background ,bg2))))
+      
+   `(font-lock-builtin-face               ((,class (:foreground ,red))))
+   `(font-lock-keyword-face               ((,class (:foreground ,red))))
 
+   `(font-lock-comment-face               ((,class (:foreground ,space-gray))))
+   `(font-lock-doc-face                   ((,class (:foreground ,space-gray))))
+   
+   `(font-latex-bold-face                 ((,class (:bold   t))))
+   `(font-latex-italic-face               ((,class (:italic t))))
+   
    ;; Org-mode
    `(org-code                             ((,class (:foreground ,fg2))))
    `(org-hide                             ((,class (:foreground ,fg4))))
@@ -125,11 +166,11 @@
    `(org-sexp-date                        ((,class (:foreground ,fg4))))
 
    ;; Helm
-   `(helm-header                          ((,class (:foreground ,bg2 :background ,fg1 :underline nil :box nil))))
-   `(helm-source-header                   ((,class (:foreground ,warning :background ,bg1 :underline t :weight bold))))
-   `(helm-selection                       ((,class (:background ,bg2))))
+   `(helm-header                          ((,class (:foreground ,bg1 :background ,fg1 :bold t))))
+   `(helm-source-header                   ((,class (:foreground ,bg1 :background ,fg4 :underline nil :bold t))))
+   `(helm-selection                       ((,class (:background ,bg3))))
    `(helm-selection-line                  ((,class (:background ,bg2))))
-   `(helm-visible-mark                    ((,class (:foreground ,bg1 :background ,bg3))))
+   `(helm-visible-mark                    ((,class (:foreground ,dark-yellow :background ,bg2))))
    `(helm-candidate-number                ((,class (:foreground ,bg1 :background ,fg1))))
    `(helm-separator                       ((,class (:foreground ,type :background ,bg1))))
    `(helm-time-zone-current               ((,class (:foreground ,builtin :background ,bg1))))
@@ -138,7 +179,7 @@
    `(helm-buffer-process                  ((,class (:foreground ,builtin :background ,bg1))))
    `(helm-buffer-saved-out                ((,class (:foreground ,fg1 :background ,bg1))))
    `(helm-buffer-size                     ((,class (:foreground ,fg1 :background ,bg1))))
-   `(helm-ff-directory                    ((,class (:foreground ,func :background ,bg1 :weight bold))))
+   `(helm-ff-directory                    ((,class (:foreground ,green :background ,bg1 :weight bold))))
    `(helm-ff-file                         ((,class (:foreground ,fg1 :background ,bg1 :weight normal))))
    `(helm-ff-executable                   ((,class (:foreground ,key2 :background ,bg1 :weight normal))))
    `(helm-ff-invalid-symlink              ((,class (:foreground ,key3 :background ,bg1 :weight bold))))
