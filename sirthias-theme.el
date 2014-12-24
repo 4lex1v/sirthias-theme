@@ -39,7 +39,8 @@
       (bg3     "#2b4852")
       (bg4     "#3e5861")
 
-      (red "#dc322f")
+      ;;(red "#dc322f")
+      (red "#DC2828")
       (blue "#8cd0d3")
       ;; (dark-blue "#005A6F")
       (alt-blue "#469AD3")
