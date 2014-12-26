@@ -3,7 +3,7 @@
 ;; Copyright (C) 2014 , Alexander Ivanov <4lex1v@gmail.com>
 
 ;; Author: Alexander Ivanov <4lex1v@gmail.com>
-;; Version: 0.1.1
+;; Version: 0.1.2
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -39,10 +39,8 @@
       (bg3     "#2b4852")
       (bg4     "#3e5861")
 
-      ;;(red "#dc322f")
-      (red "#DC2828")
+      (red "#dc322f")
       (blue "#8cd0d3")
-      ;; (dark-blue "#005A6F")
       (alt-blue "#469AD3")
       (green "#859901")
       (dark-yellow "#b58903")
@@ -272,10 +270,11 @@
    `(web-mode-function-name-face          ((,class (:inherit ,font-lock-function-name-face))))
    `(web-mode-string-face                 ((,class (:foreground ,str))))
    `(web-mode-type-face                   ((,class (:inherit ,font-lock-type-face))))
-   `(web-mode-html-attr-name-face         ((,class (:foreground ,func))))
-   `(web-mode-html-attr-value-face        ((,class (:foreground ,keyword))))
-   `(web-mode-warning-face                ((,class (:inherit ,font-lock-warning-face))))
-   `(web-mode-html-tag-face               ((,class (:foreground ,builtin))))))
+   `(web-mode-html-attr-name-face         ((,class (:foreground ,red))))
+   `(web-mode-html-attr-value-face        ((,class (:foreground ,yellow))))
+   `(web-mode-html-tag-face               ((,class (:foreground ,blue)))))
+   `(web-mode-warning-face                ((,class (:inherit ,font-lock-warning-face)))))
+   
 
 
 ;;;###autoload
