@@ -3,7 +3,7 @@
 ;; Copyright (C) 2014 , Alexander Ivanov <4lex1v@gmail.com>
 
 ;; Author: Alexander Ivanov <4lex1v@gmail.com>
-;; Version: 0.1.2
+;; Version: 0.1.3
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -59,10 +59,7 @@
       (type    "#efef8f")
       (var     "#277082")
       (warning "#b58903"))
-      
-      ;; In simple colors
-       ;; af322f
-      
+            
   (custom-theme-set-faces
    'sirthias
 
@@ -98,25 +95,6 @@
    `(isearch      ((,class (:foreground ,light-yellow :background ,bg3))))
    `(isearch-fail ((,class (:foreground ,dark-yellow :background ,bg3 :bold t))))
    
-   ;; ;; Font-lock old
-   ;; `(font-lock-builtin-face               ((,class (:foreground ,red))))
-   ;; `(font-lock-comment-face               ((,class (:foreground ,comment))))
-   ;; `(font-lock-negation-char-face         ((,class (:foreground ,const))))
-   ;; `(font-lock-reference-face             ((,class (:foreground ,const))))
-   ;; `(font-lock-constant-face              ((,class (:foreground ,const))))
-   ;; `(font-lock-doc-face                   ((,class (:foreground ,comment))))
-   ;; `(font-lock-keyword-face               ((,class (:foreground ,red))))
-   ;; `(font-lock-string-face                ((,class (:foreground ,str))))
-   ;; `(font-lock-type-face                  ((,class (:foreground ,type))))
-   ;; `(font-lock-function-name-face         ((,class (:foreground ,blue))))
-   ;; `(font-lock-variable-name-face         ((,class (:foreground ,blue))))
-   ;; `(font-lock-warning-face               ((,class (:foreground ,warning :background ,bg2))))
-   ;; `(font-latex-bold-face                 ((,class (:foreground ,type))))
-   ;; `(font-latex-italic-face               ((,class (:foreground ,key3 :italic t))))
-   ;; `(font-latex-string-face               ((,class (:foreground ,str))))
-   ;; `(font-latex-match-reference-keywords  ((,class (:foreground ,const))))
-   ;; `(font-latex-match-variable-keywords   ((,class (:foreground ,var))))
-
    ;; Font-lock old
    `(font-lock-type-face                  ((,class (:foreground ,light-yellow))))
    `(font-lock-variable-name-face         ((,class (:foreground ,blue))))
@@ -126,13 +104,10 @@
    `(font-lock-negation-char-face         ((,class (:foreground ,yellow))))
    `(font-lock-constant-face              ((,class (:foreground ,light-yellow))))
    `(font-lock-warning-face               ((,class (:foreground ,dark-yellow :background ,bg2))))
-      
    `(font-lock-builtin-face               ((,class (:foreground ,red))))
    `(font-lock-keyword-face               ((,class (:foreground ,red))))
-
    `(font-lock-comment-face               ((,class (:foreground ,space-gray))))
    `(font-lock-doc-face                   ((,class (:foreground ,space-gray))))
-   
    `(font-latex-bold-face                 ((,class (:bold   t))))
    `(font-latex-italic-face               ((,class (:italic t))))
    
@@ -192,19 +167,6 @@
    `(helm-grep-running                    ((,class (:foreground ,func :background ,bg1))))
    `(helm-moccur-buffer                   ((,class (:foreground ,func :background ,bg1))))
 
-   `(ido-only-match                       ((,class (:foreground ,warning))))
-   `(ido-first-match                      ((,class (:foreground ,keyword :bold t))))
-
-   `(gnus-header-content                  ((,class (:foreground ,keyword))))
-   `(gnus-header-from                     ((,class (:foreground ,var))))
-   `(gnus-header-name                     ((,class (:foreground ,type))))
-   `(gnus-header-subject                  ((,class (:foreground ,func :bold t))))
-
-   `(mu4e-view-url-number-face            ((,class (:foreground ,type))))
-   `(mu4e-cited-1-face                    ((,class (:foreground ,fg2))))
-   `(mu4e-cited-7-face                    ((,class (:foreground ,fg3))))
-   `(mu4e-header-marks-face               ((,class (:foreground ,type))))
-
    ;; Others
    `(ac-completion-face                   ((,class (:underline t :foreground ,keyword))))
    `(icompletep-determined                ((,class :foreground ,builtin)))
@@ -215,22 +177,7 @@
    `(ffap                                 ((,class (:foreground ,fg4))))
    `(lazy-highlight                       ((,class (:foreground ,fg2 :background ,bg3))))
 
-   `(undo-tree-visualizer-current-face    ((,class :foreground ,builtin)))
-   `(undo-tree-visualizer-register-face   ((,class :foreground ,keyword)))
-   `(undo-tree-visualizer-default-face    ((,class :foreground ,fg2)))
-   `(undo-tree-visualizer-unmodified-face ((,class :foreground ,var)))
-   `(undo-tree-visualizer-register-face   ((,class :foreground ,type)))
-
-   `(rainbow-delimiters-depth-1-face      ((,class :foreground ,fg1)))
-   `(rainbow-delimiters-depth-2-face      ((,class :foreground ,type)))
-   `(rainbow-delimiters-depth-3-face      ((,class :foreground ,var)))
-   `(rainbow-delimiters-depth-4-face      ((,class :foreground ,const)))
-   `(rainbow-delimiters-depth-5-face      ((,class :foreground ,keyword)))
-   `(rainbow-delimiters-depth-6-face      ((,class :foreground ,fg1)))
-   `(rainbow-delimiters-depth-7-face      ((,class :foreground ,type)))
-   `(rainbow-delimiters-depth-8-face      ((,class :foreground ,var)))
-   `(rainbow-delimiters-unmatched-face    ((,class :foreground ,warning)))
-
+   ;; Magit
    `(magit-process-ok                     ((,class :foreground ,type)))
    `(magit-item-highlight                 ((,class :background ,bg3)))
    `(magit-section-heading                ((,class (:foreground ,keyword :weight bold))))
@@ -247,21 +194,7 @@
    `(magit-hash                           ((,class (:foreground ,fg2))))
    `(magit-diff-file-header               ((,class (:foreground ,fg2 :background ,bg3))))
 
-   `(term                                 ((,class (:foreground ,fg1 :background ,bg1))))
-   `(term-color-black                     ((,class (:foreground ,bg3 :background ,bg3))))
-   `(term-color-blue                      ((,class (:foreground ,func :background ,func))))
-   `(term-color-red                       ((,class (:foreground ,keyword :background ,bg3))))
-   `(term-color-green                     ((,class (:foreground ,type :background ,bg3))))
-   `(term-color-yellow                    ((,class (:foreground ,var :background ,var))))
-   `(term-color-magenta                   ((,class (:foreground ,builtin :background ,builtin))))
-   `(term-color-cyan                      ((,class (:foreground ,str :background ,str))))
-   `(term-color-white                     ((,class (:foreground ,fg2 :background ,fg2))))
-
-   `(js2-private-function-call            ((,class (:foreground ,const))))
-   `(js2-jsdoc-html-tag-delimiter         ((,class (:foreground ,str))))
-   `(js2-jsdoc-html-tag-name              ((,class (:foreground ,key2))))
-   `(js2-external-variable                ((,class (:foreground ,const  ))))
-
+   ;; Web-Mode
    `(web-mode-builtin-face                ((,class (:inherit ,font-lock-builtin-face))))
    `(web-mode-comment-face                ((,class (:inherit ,font-lock-comment-face))))
    `(web-mode-constant-face               ((,class (:inherit ,font-lock-constant-face))))
@@ -270,8 +203,8 @@
    `(web-mode-function-name-face          ((,class (:inherit ,font-lock-function-name-face))))
    `(web-mode-string-face                 ((,class (:foreground ,str))))
    `(web-mode-type-face                   ((,class (:inherit ,font-lock-type-face))))
-   `(web-mode-html-attr-name-face         ((,class (:foreground ,red))))
-   `(web-mode-html-attr-value-face        ((,class (:foreground ,yellow))))
+   `(web-mode-html-attr-name-face         ((,class (:foreground ,yellow))))
+   `(web-mode-html-attr-value-face        ((,class (:foreground ,green))))
    `(web-mode-html-tag-face               ((,class (:foreground ,blue)))))
    `(web-mode-warning-face                ((,class (:inherit ,font-lock-warning-face)))))
    
