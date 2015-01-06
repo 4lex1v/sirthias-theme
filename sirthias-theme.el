@@ -3,7 +3,7 @@
 ;; Copyright (C) 2014 , Alexander Ivanov <4lex1v@gmail.com>
 
 ;; Author: Alexander Ivanov <4lex1v@gmail.com>
-;; Version: 0.1.3
+;; Version: 0.1.4
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -67,8 +67,6 @@
    `(default        ((,class (:foreground ,fg1 :background ,bg1)))) 
    `(region         ((,class (:foreground ,bg1 :background ,fg1)))) 
    `(cursor         ((,class (:background ,fg1)))) 
-   `(highlight      ((,class (:foreground ,fg3 :background ,bg3)))) 
-   `(lazy-highlight ((,class (:foreground ,bg3 :background ,dark-yellow :weight normal))))
    `(fringe         ((,class (:background ,bg1))))
    `(hl-line        ((,class (:background ,bg2))))
    `(link           ((,class (:foreground ,blue :underline t :weight bold))))
