@@ -80,7 +80,7 @@
    `(error   ((,class (:foreground ,red))))
 
    ;; Mode line
-   `(mode-line           ((,class (:foreground ,bg1 :background ,fg1 :box nil))))
+   `(mode-line           ((,class (:foreground ,bg1 :background ,fg1 :box nil :height 130))))
    `(mode-line-buffer-id ((,class (:foreground ,bg1 :weight      bold))))
    `(mode-line-inactive  ((,class (:foreground ,bg1 :background ,fg1))))
    `(mode-line-highlight ((,class (:foreground ,bg1 :background ,bg4))))
