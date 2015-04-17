@@ -95,7 +95,6 @@
    `(isearch      ((,class (:foreground ,light-yellow :background ,bg3))))
    `(isearch-fail ((,class (:foreground ,dark-yellow :background ,bg3 :bold t))))
    
-   ;; Font-lock old
    `(font-lock-builtin-face              ((,class (:foreground ,red))))
    `(font-lock-comment-face              ((,class (:foreground ,space-gray))))
    `(font-lock-constant-face             ((,class (:foreground ,light-yellow))))
@@ -105,7 +104,7 @@
    `(font-lock-keyword-face              ((,class (:foreground ,red))))
    `(font-lock-negation-char-face        ((,class (:foreground ,yellow))))
    `(font-lock-string-face               ((,class (:foreground ,green))))
-   `(font-lock-type-face                 ((,class (:foreground ,light-yellow :underline t))))
+   `(font-lock-type-face                 ((,class (:foreground ,light-yellow))))
    `(font-lock-variable-name-face        ((,class (:foreground ,blue))))
    `(font-lock-warning-face              ((,class (:foreground ,dark-yellow :background ,bg2))))
    `(font-latex-bold-face                ((,class (:bold   t))))
