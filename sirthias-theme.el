@@ -50,15 +50,6 @@
       (bg3     "#2b4852")
       (bg4     "#3e5861")
 
-      (red "#dc322f")
-      (blue "#8cd0d3")
-      (alt-blue "#469AD3")
-      (green "#859901")
-      (dark-yellow "#b58903")
-      (light-yellow "#efef8f")
-      (yellow "#E2DA47")
-      (space-gray "#93a1a1")
-      
       (key2    "#e6d3b4")
       (key3    "#c7b597")
       (builtin "#8cd0d3")
