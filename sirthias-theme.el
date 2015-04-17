@@ -29,6 +29,17 @@
 (deftheme sirthias "Sirthias color theme for Emacs")
 
 (let ((class '((class color) (min-colors 89)))
+      (red          "#dc322f")
+      (blue         "#8cd0d3")
+      ;;(blue         "#2aa198")
+      (alt-blue     "#469AD3")
+      (green        "#859901")
+      ;;(green        "#859900")
+      (yellow       "#E2DA47")
+      (dark-yellow  "#cb4b16")
+      (light-yellow "#efef8f")
+      (space-gray   "#93a1a1")
+
       (fg1     "#eee8d5") ;; Eee8d5 or F7E6D1
       (fg2     "#d9d3c2")
       (fg3     "#c4bfaf")
