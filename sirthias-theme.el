@@ -77,7 +77,7 @@
    ;; States
    `(success ((,class (:foreground ,green ))))
    `(warning ((,class (:foreground ,yellow))))
-   `(error   ((,class (:foreground ,dark-yellow))))
+   `(error   ((,class (:foreground ,red))))
 
    ;; Mode line
    `(mode-line           ((,class (:foreground ,bg1 :background ,fg1 :box nil))))
@@ -96,20 +96,21 @@
    `(isearch-fail ((,class (:foreground ,dark-yellow :background ,bg3 :bold t))))
    
    ;; Font-lock old
-   `(font-lock-type-face                  ((,class (:foreground ,light-yellow))))
-   `(font-lock-variable-name-face         ((,class (:foreground ,blue))))
-   `(font-lock-function-name-face         ((,class (:foreground ,blue))))
-   `(font-lock-string-face                ((,class (:foreground ,green))))
-   `(font-latex-match-reference-keywords  ((,class (:foreground ,yellow))))
-   `(font-lock-negation-char-face         ((,class (:foreground ,yellow))))
-   `(font-lock-constant-face              ((,class (:foreground ,light-yellow))))
-   `(font-lock-warning-face               ((,class (:foreground ,dark-yellow :background ,bg2))))
-   `(font-lock-builtin-face               ((,class (:foreground ,red))))
-   `(font-lock-keyword-face               ((,class (:foreground ,red))))
-   `(font-lock-comment-face               ((,class (:foreground ,space-gray))))
-   `(font-lock-doc-face                   ((,class (:foreground ,space-gray))))
-   `(font-latex-bold-face                 ((,class (:bold   t))))
-   `(font-latex-italic-face               ((,class (:italic t))))
+   `(font-lock-builtin-face              ((,class (:foreground ,red))))
+   `(font-lock-comment-face              ((,class (:foreground ,space-gray))))
+   `(font-lock-constant-face             ((,class (:foreground ,light-yellow))))
+   `(font-lock-doc-face                  ((,class (:foreground ,space-gray))))
+   `(font-lock-doc-string-face           ((,class (:foreground ,space-gray))))
+   `(font-lock-function-name-face        ((,class (:foreground ,blue))))
+   `(font-lock-keyword-face              ((,class (:foreground ,red))))
+   `(font-lock-negation-char-face        ((,class (:foreground ,yellow))))
+   `(font-lock-string-face               ((,class (:foreground ,green))))
+   `(font-lock-type-face                 ((,class (:foreground ,light-yellow :underline t))))
+   `(font-lock-variable-name-face        ((,class (:foreground ,blue))))
+   `(font-lock-warning-face              ((,class (:foreground ,dark-yellow :background ,bg2))))
+   `(font-latex-bold-face                ((,class (:bold   t))))
+   `(font-latex-italic-face              ((,class (:italic t))))
+   `(font-latex-match-reference-keywords ((,class (:foreground ,yellow))))
    
    ;; Org-mode
    `(org-code                             ((,class (:foreground ,fg2))))
@@ -206,8 +207,8 @@
    `(web-mode-html-attr-name-face         ((,class (:foreground ,yellow))))
    `(web-mode-html-attr-value-face        ((,class (:foreground ,green))))
    `(web-mode-html-tag-face               ((,class (:foreground ,blue)))))
-   `(web-mode-warning-face                ((,class (:inherit ,font-lock-warning-face)))))
-   
+  `(web-mode-warning-face                ((,class (:inherit ,font-lock-warning-face)))))
+
 
 
 ;;;###autoload
