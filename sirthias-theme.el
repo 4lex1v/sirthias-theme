@@ -30,14 +30,22 @@
 
 (let ((class '((class color) (min-colors 89)))
       (red          "#dc322f")
-      (blue         "#8cd0d3")
-      ;;(blue         "#2aa198")
+      
+      ;;(blue         "#19aacf")
+      ;;(blue         "#2aa198") 
+      ;;(blue         "#55acee")
+      (blue         "#8cd0d3") ;; - original
+
       (alt-blue     "#469AD3")
       (green        "#859901")
       ;;(green        "#859900")
-      (yellow       "#E2DA47")
+
+      (yellow       "#E2DA47") ;; - original
+      
       (dark-yellow  "#cb4b16")
+
       (light-yellow "#efef8f")
+
       (space-gray   "#93a1a1")
 
       (fg1     "#eee8d5") ;; Eee8d5 or F7E6D1
@@ -45,7 +53,9 @@
       (fg3     "#c4bfaf")
       (fg4     "#afab9d")
       
-      (bg1     "#002b36")
+      ;;(bg1     "#103a51")
+      ;;(bg1     "#354854")
+      (bg1     "#002b36") ;; - original
       (bg2     "#183944")
       (bg3     "#2b4852")
       (bg4     "#3e5861")
@@ -77,7 +87,7 @@
    ;; States
    `(success ((,class (:foreground ,green ))))
    `(warning ((,class (:foreground ,yellow))))
-   `(error   ((,class (:foreground ,red))))
+   `(error   ((,class (:foreground ,red   ))))
 
    ;; Mode line
    `(mode-line           ((,class (:foreground ,bg1 :background ,fg1 :box nil :height 130))))
@@ -167,6 +177,9 @@
    `(helm-grep-running                    ((,class (:foreground ,func :background ,bg1))))
    `(helm-moccur-buffer                   ((,class (:foreground ,func :background ,bg1))))
 
+   ;; Hideshow
+   `(hs-face                              ((,class (:foreground ,space-gray :background ,bg2))))
+
    ;; Others
    `(ac-completion-face                   ((,class (:underline t :foreground ,keyword))))
    `(icompletep-determined                ((,class :foreground ,builtin)))
@@ -206,7 +219,7 @@
    `(web-mode-html-attr-name-face         ((,class (:foreground ,yellow))))
    `(web-mode-html-attr-value-face        ((,class (:foreground ,green))))
    `(web-mode-html-tag-face               ((,class (:foreground ,blue)))))
-  `(web-mode-warning-face                ((,class (:inherit ,font-lock-warning-face)))))
+   `(web-mode-warning-face                ((,class (:inherit ,font-lock-warning-face)))))
 
 
 
