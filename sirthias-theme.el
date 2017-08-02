@@ -28,38 +28,77 @@
 
 (deftheme sirthias "Sirthias color theme for Emacs")
 
+(defmacro dyn-let (varlist fn setfaces setvars)
+  (list 'let (append varlist (funcall fn)) setfaces setvars))
+
+(defcustom sirthias-pallet-type 'warm
+  "Switcher between a warm and cold foreground pallet scheme"
+  :group 'sirthias-theme
+  :type '(choice (const warm)
+                 (const cold)))
+
+(defun use-warm-colors-p ()
+  (eq sirthias-pallet-type 'warm))
+
 (let ((class '((class color) (min-colors 89)))
-      (red          "#dc322f")
-      
-      ;;(blue         "#19aacf")
-      ;;(blue         "#2aa198") 
-      ;;(blue         "#55acee")
-      (blue         "#8cd0d3") ;; - original
+      (bg2 "#002832")
+                                        ;(bg1 "#002b36")
+                                        ;(bg1 "#003542")
+      (bg1 "#00303D")
+      (bg3 "#173e48")
+      (bg4 "#2e515a")
 
+      (fg-dark "#546A76")
+      
+      (fg1 "#FFF8E5")
+      (fg2 "#d9d3c2")
+      (fg3 "#c4bfaf")
+      (fg4 "#afab9d")
+      
+      
+      ;; Inverted experiments
+      ;; (fg2 "#002832")
+      ;; (fg1 "#00303D")
+      ;; (fg3 "#173e48")
+      ;; (fg4 "#2e515a")
+
+      ;; (fg-dark "#546A76")
+      
+      ;; (bg1 "#FFF8E5")
+      ;; (bg2 "#d9d3c2")
+      ;; (bg3 "#c4bfaf")
+      ;; (bg4 "#afab9d")
+
+                                        ;(red          "#dc322f")
+                                        ;(red          "#E55250")
+      (red "#E54744") ;; -- not sure if i should go a big more contrast or a bit more flattened? Should we try both?
+                                        ;(red          "#FE5F55")
+                                        ;(red          "#F25F54")
+      
+                                        ;(light-yellow "#efef8f")
+      (light-yellow "#FFFFA5")
+      
+      (pink "#ECC8AF")
+      
+      (silver "#DBE9EE")
+                                        ;(blue         "#2374AB") ;; - original
+      (blue "#8cd0d3") ;; - original
+      ;; (blue "#A8F9FF")
+      ;; (blue "#9AE5E6")
+      ;; (blue "#C0D6DF")
+                                        ;(alt-blue     "#469AD3")
       (alt-blue     "#469AD3")
-      (green        "#859901")
-      ;;(green        "#859900")
-
+      
+      ;; (purple "#242038") ;; dark purple
+      ;; (purple "#9067C6") 
+                                        ;(green        "#859901")
+                                        ;(green        "#79B791")
+                                        ;(green        "#64B784")
+      (green        "#49B773")
+      
       (yellow       "#E2DA47") ;; - original
-      
       (dark-yellow  "#cb4b16")
-
-      (light-yellow "#efef8f")
-
-      (space-gray   "#93a1a1")
-
-      (fg1     "#eee8d5") ;; Eee8d5 or F7E6D1
-      (fg2     "#d9d3c2")
-      (fg3     "#c4bfaf")
-      (fg4     "#afab9d")
       
-      ;;(bg1     "#103a51")
-      ;;(bg1     "#354854")
-      (bg1     "#002b36") ;; - original
-      (bg2     "#183944")
-      (bg3     "#2b4852")
-      (bg4     "#3e5861")
-
       (key2    "#e6d3b4")
       (key3    "#c7b597")
       (builtin "#8cd0d3")
@@ -71,14 +110,14 @@
       (type    "#efef8f")
       (var     "#277082")
       (warning "#b58903"))
-            
+  
   (custom-theme-set-faces
    'sirthias
 
    ;; General
    `(default        ((,class (:foreground ,fg1 :background ,bg1)))) 
    `(region         ((,class (:foreground ,bg1 :background ,fg1)))) 
-   `(cursor         ((,class (:background ,fg1)))) 
+   `(cursor         ((,class (:background ,blue)))) 
    `(fringe         ((,class (:background ,bg1))))
    `(hl-line        ((,class (:background ,bg2))))
    `(link           ((,class (:foreground ,blue :underline t :weight bold))))
@@ -92,8 +131,8 @@
    ;; Mode line
    `(mode-line           ((,class (:foreground ,bg1 :background ,fg1 :box nil))))
    `(mode-line-buffer-id ((,class (:foreground ,bg1 :weight      bold))))
-   `(mode-line-inactive  ((,class (:foreground ,bg1 :background ,space-gray :box nil))))
-   `(mode-line-highlight ((,class (:foreground ,bg1 :background ,bg4))))
+   `(mode-line-inactive  ((,class (:foreground ,bg1 :background ,fg-dark :box nil))))
+   `(mode-line-highlight ((,class (:foreground ,bg1 :background ,light-yellow))))
 
    ;; Other UI general faces
    `(menu                  ((,class (:foreground ,fg1 :background ,bg1))))
@@ -106,10 +145,10 @@
    `(isearch-fail ((,class (:foreground ,dark-yellow :background ,bg3 :bold t))))
    
    `(font-lock-builtin-face              ((,class (:foreground ,red))))
-   `(font-lock-comment-face              ((,class (:foreground ,space-gray))))
-   `(font-lock-constant-face             ((,class (:foreground ,light-yellow))))
-   `(font-lock-doc-face                  ((,class (:foreground ,space-gray))))
-   `(font-lock-doc-string-face           ((,class (:foreground ,space-gray))))
+   `(font-lock-comment-face              ((,class (:foreground ,fg-dark))))
+   `(font-lock-constant-face             ((,class (:foreground ,light-yellow :slant italic))))
+   `(font-lock-doc-face                  ((,class (:foreground ,fg-dark))))
+   `(font-lock-doc-string-face           ((,class (:foreground ,fg-dark))))
    `(font-lock-function-name-face        ((,class (:foreground ,blue))))
    `(font-lock-keyword-face              ((,class (:foreground ,red))))
    `(font-lock-negation-char-face        ((,class (:foreground ,yellow))))
@@ -178,7 +217,7 @@
    `(helm-moccur-buffer                   ((,class (:foreground ,func :background ,bg1))))
 
    ;; Hideshow
-   `(hs-face                              ((,class (:foreground ,space-gray :background ,bg2))))
+   `(hs-face                              ((,class (:foreground ,fg-dark :background ,bg2))))
 
    ;; Others
    `(ac-completion-face                   ((,class (:underline t :foreground ,keyword))))
@@ -207,6 +246,24 @@
    `(magit-hash                           ((,class (:foreground ,fg2))))
    `(magit-diff-file-header               ((,class (:foreground ,fg2 :background ,bg3))))
 
+   ;; Company
+   ;; `(company-echo-common ((,class (:background ,fg1 :foreground ,bg1))))
+   ;; `(company-preview ((,class (:background ,bg2 :foreground ,fg2))))
+   ;; `(company-preview-common ((,class (:background ,ttip-bg :foreground ,base))))
+   ;; `(company-preview-search ((,class (:inherit match))))
+   ;; `(company-scrollbar-bg ((,class (:background ,bg2))))
+   ;; `(company-scrollbar-fg ((,class (:background ,act2))))
+   ;`(company-template-field ((,class (:inherit region))))
+   `(company-tooltip ((,class (:background ,fg1 :foreground ,bg1))))
+   `(company-tooltip-annotation ((,class (:foreground ,red))))
+   `(company-tooltip-common ((,class (:background ,bg1 :foreground ,fg1))))
+   ;;`(company-tooltip-common-selection ((,class (:foreground ,base))))
+   ;; `(company-tooltip-mouse ((,class (:inherit highlight))))
+   ;; `(company-tooltip-search ((,class (:inherit match))))
+   `(company-tooltip-selection ((,class (:background ,bg3 :foreground ,fg1))))
+
+
+   
    ;; Web-Mode
    `(web-mode-builtin-face                ((,class (:inherit ,font-lock-builtin-face))))
    `(web-mode-comment-face                ((,class (:inherit ,font-lock-comment-face))))
@@ -218,8 +275,17 @@
    `(web-mode-type-face                   ((,class (:inherit ,font-lock-type-face))))
    `(web-mode-html-attr-name-face         ((,class (:foreground ,yellow))))
    `(web-mode-html-attr-value-face        ((,class (:foreground ,green))))
-   `(web-mode-html-tag-face               ((,class (:foreground ,blue)))))
-   `(web-mode-warning-face                ((,class (:inherit ,font-lock-warning-face)))))
+   `(web-mode-html-tag-face               ((,class (:foreground ,blue))))
+   `(web-mode-warning-face                ((,class (:inherit ,font-lock-warning-face))))
+   
+   ;; EShell
+   `(eshell-prompt                        ((,class (:foreground ,fg1)))) ;; This doesn't look particulary good
+   
+   ;; Smartparens
+   `(sp-pair-overlay-face                 ((,class (:background ,fg1 :foreground ,bg1))))
+   `(sp-show-pair-match-face              ((,class (:foreground ,red :inherit bold :underline t))))
+
+   ))
 
 
 
