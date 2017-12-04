@@ -121,13 +121,25 @@
    `(font-latex-italic-face              ((,class (:italic t))))
    `(font-latex-match-reference-keywords ((,class (:foreground ,yellow))))
    
+   ;;;
    ;; Org-mode
+   ;;
+   `(org-level-1                          ((,class (:bold t :foreground ,fg1 :height 1.1))))
+   `(org-level-2                          ((,class (:bold t :foreground ,fg2))))
+   `(org-level-3                          ((,class (:bold t :foreground ,fg3))))
+   `(org-level-4                          ((,class (:bold t :foreground ,fg4))))
+
+   `(org-checkbox                         ((,class (:bold t :foreground ,red))))
+   `(org-checkbox-statistics-todo         ((,class (:bold t :foreground ,yellow))))
+   `(org-checkbox-statistics-done         ((,class (:bold t :foreground ,green))))
+   
+   `(org-agenda-structure                 ((,class (:weight bold :foreground ,fg3 :box (:color ,fg4) :background ,bg3))))
+   `(org-agenda-date                      ((,class (:foreground ,var :height 1.1 ))))
+   `(org-agenda-date-weekend              ((,class (:weight normal :foreground ,fg4))))
+   `(org-agenda-date-today                ((,class (:weight bold :foreground ,keyword :height 1.4))))
+   
    `(org-code                             ((,class (:foreground ,fg2))))
    `(org-hide                             ((,class (:foreground ,fg4))))
-   `(org-level-1                          ((,class (:bold t :foreground ,fg2 :height 1.1))))
-   `(org-level-2                          ((,class (:bold nil :foreground ,fg3))))
-   `(org-level-3                          ((,class (:bold t :foreground ,fg4))))
-   `(org-level-4                          ((,class (:bold nil :foreground ,bg4))))
    `(org-date                             ((,class (:underline t :foreground ,var) )))
    `(org-footnote                         ((,class (:underline t :foreground ,fg4))))
    `(org-link                             ((,class (:underline t :foreground ,type ))))
@@ -139,15 +151,12 @@
    `(org-todo                             ((,class :foreground ,keyword :bold t)))
    `(org-done                             ((,class (:bold t :foreground ,bg4))))
    `(org-warning                          ((,class (:underline t :foreground ,warning))))
-   `(org-agenda-structure                 ((,class (:weight bold :foreground ,fg3 :box (:color ,fg4) :background ,bg3))))
-   `(org-agenda-date                      ((,class (:foreground ,var :height 1.1 ))))
-   `(org-agenda-date-weekend              ((,class (:weight normal :foreground ,fg4))))
-   `(org-agenda-date-today                ((,class (:weight bold :foreground ,keyword :height 1.4))))
    `(org-scheduled                        ((,class (:foreground ,type))))
    `(org-ellipsis                         ((,class (:foreground ,builtin))))
    `(org-verbatim                         ((,class (:foreground ,fg4))))
    `(org-document-info-keyword            ((,class (:foreground ,func))))
    `(org-sexp-date                        ((,class (:foreground ,fg4))))
+   `(org-tag                              ((,class (:foreground ,red))))
 
    ;; Helm
    `(helm-header                          ((,class (:foreground ,bg1 :background ,fg1 :bold t))))
