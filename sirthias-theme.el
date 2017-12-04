@@ -130,13 +130,16 @@
    `(org-level-4                          ((,class (:bold t :foreground ,fg4))))
 
    `(org-checkbox                         ((,class (:bold t :foreground ,red))))
-   `(org-checkbox-statistics-todo         ((,class (:bold t :foreground ,yellow))))
+   `(org-checkbox-statistics-todo         ((,class (:bold t :foreground ,red))))
    `(org-checkbox-statistics-done         ((,class (:bold t :foreground ,green))))
    
    `(org-agenda-structure                 ((,class (:weight bold :foreground ,fg3 :box (:color ,fg4) :background ,bg3))))
    `(org-agenda-date                      ((,class (:foreground ,var :height 1.1 ))))
    `(org-agenda-date-weekend              ((,class (:weight normal :foreground ,fg4))))
    `(org-agenda-date-today                ((,class (:weight bold :foreground ,keyword :height 1.4))))
+   
+   `(org-todo                             ((,class (:bold t :foreground ,red))))
+   `(org-done                             ((,class (:bold t :foreground ,green))))
    
    `(org-code                             ((,class (:foreground ,fg2))))
    `(org-hide                             ((,class (:foreground ,fg4))))
@@ -148,8 +151,6 @@
    `(org-block                            ((,class (:foreground ,fg3))))
    `(org-quote                            ((,class (:inherit org-block :slant italic))))
    `(org-verse                            ((,class (:inherit org-block :slant italic))))
-   `(org-todo                             ((,class :foreground ,keyword :bold t)))
-   `(org-done                             ((,class (:bold t :foreground ,bg4))))
    `(org-warning                          ((,class (:underline t :foreground ,warning))))
    `(org-scheduled                        ((,class (:foreground ,type))))
    `(org-ellipsis                         ((,class (:foreground ,builtin))))
