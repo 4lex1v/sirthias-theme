@@ -30,18 +30,11 @@
 
 (let ((class '((class color) (min-colors 89)))
       (red          "#dc322f")
-      
-      ;;(blue         "#19aacf")
-      ;;(blue         "#2aa198") 
-      ;;(blue         "#55acee")
       (blue         "#8cd0d3") ;; - original
 
       (alt-blue     "#469AD3")
       (green        "#859901")
-      ;;(green        "#859900")
-
       (yellow       "#E2DA47") ;; - original
-      
       (dark-yellow  "#cb4b16")
 
       (light-yellow "#efef8f")
@@ -134,9 +127,13 @@
    `(org-checkbox-statistics-done         ((,class (:bold t :foreground ,green))))
    
    `(org-agenda-structure                 ((,class (:weight bold :foreground ,fg3 :box (:color ,fg4) :background ,bg3))))
+   `(org-scheduled                        ((,class (:foreground ,fg1))))
+   `(org-scheduled-today                  ((,class nil)))
    `(org-agenda-date                      ((,class (:foreground ,var :height 1.1 ))))
-   `(org-agenda-date-weekend              ((,class (:weight normal :foreground ,fg4))))
-   `(org-agenda-date-today                ((,class (:weight bold :foreground ,keyword :height 1.4))))
+   `(org-agenda-date-weekend              ((,class (:inherit 'org-agenda-date))))
+   `(org-agenda-date-today                ((,class (:weight bold :foreground ,green :height 1.4))))
+   `(org-agenda-done                      ((,class (:strike-through t :italic t))))
+   `(org-upcoming-deadline                ((,class (:underline t))))
    
    `(org-todo                             ((,class (:bold t :foreground ,red))))
    `(org-done                             ((,class (:bold t :foreground ,green))))
@@ -147,14 +144,13 @@
    `(org-footnote                         ((,class (:underline t :foreground ,fg4))))
    `(org-link                             ((,class (:underline t :foreground ,type ))))
    `(org-special-keyword                  ((,class (:foreground ,func))))
-   `(org-verbatim                         ((,class (:foreground ,bg3 :underline t :slant italic))))
+   `(org-verbatim                         ((,class (:foreground ,blue :bold t))))
    `(org-block                            ((,class (:foreground ,fg3))))
    `(org-quote                            ((,class (:inherit org-block :slant italic))))
    `(org-verse                            ((,class (:inherit org-block :slant italic))))
    `(org-warning                          ((,class (:underline t :foreground ,warning))))
    `(org-scheduled                        ((,class (:foreground ,type))))
    `(org-ellipsis                         ((,class (:foreground ,builtin))))
-   `(org-verbatim                         ((,class (:foreground ,fg4))))
    `(org-document-info-keyword            ((,class (:foreground ,func))))
    `(org-sexp-date                        ((,class (:foreground ,fg4))))
    `(org-tag                              ((,class (:foreground ,red))))
