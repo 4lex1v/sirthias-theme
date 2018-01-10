@@ -28,6 +28,7 @@
 
 (deftheme sirthias "Sirthias color theme for Emacs")
 
+;; For more info on how to define this stuff check `defface'
 (let ((class '((class color) (min-colors 89)))
       (red          "#dc322f")
       (blue         "#8cd0d3") ;; - original
@@ -46,9 +47,8 @@
       (fg3     "#c4bfaf")
       (fg4     "#afab9d")
       
-      ;;(bg1     "#103a51")
-      ;;(bg1     "#354854")
-      (bg1     "#002b36") ;; - original
+      ;;(bg1     "#002b36") ;; - original
+      (bg1     "#002532") ;; - original
       (bg2     "#183944")
       (bg3     "#2b4852")
       (bg4     "#3e5861")
@@ -126,17 +126,18 @@
    `(org-checkbox-statistics-todo         ((,class (:bold t :foreground ,red))))
    `(org-checkbox-statistics-done         ((,class (:bold t :foreground ,green))))
    
+   `(org-todo                             ((,class (:foreground ,red))))
+   `(org-done                             ((,class (:foreground ,green))))
+   
    `(org-agenda-structure                 ((,class (:weight bold :foreground ,fg3 :box (:color ,fg4) :background ,bg3))))
    `(org-scheduled                        ((,class (:foreground ,fg1))))
-   `(org-scheduled-today                  ((,class nil)))
+   `(org-scheduled-today                  ((,class (:inherite 'org-scheduled))))
    `(org-agenda-date                      ((,class (:foreground ,var))))
    `(org-agenda-date-weekend              ((,class (:inherit 'org-agenda-date))))
    `(org-agenda-date-today                ((,class (:weight bold :foreground ,green :height 1.2))))
-   `(org-agenda-done                      ((,class (:strike-through t :italic t))))
    `(org-upcoming-deadline                ((,class (:underline t))))
-   
-   `(org-todo                             ((,class (:bold t :foreground ,red))))
-   `(org-done                             ((,class (:bold t :foreground ,green))))
+   ;;`(org-agenda-done                      ((,class (:strike-through t :italic t :foreground ,bg4))))
+   `(org-agenda-done                      ((,class (:strike-through t :italic t :foreground ,space-gray))))
    
    `(org-code                             ((,class (:foreground ,fg2))))
    `(org-hide                             ((,class (:foreground ,fg4))))
@@ -182,6 +183,9 @@
    `(helm-grep-running                    ((,class (:foreground ,func :background ,bg1))))
    `(helm-moccur-buffer                   ((,class (:foreground ,func :background ,bg1))))
 
+   ;; Macrostep
+   `(macrostep-expansion-highlight-face   ((,class (:background ,bg2))))
+   
    ;; Hideshow
    `(hs-face                              ((,class (:foreground ,space-gray :background ,bg2))))
 
