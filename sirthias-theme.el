@@ -28,19 +28,21 @@
 
 (deftheme sirthias "Sirthias color theme for Emacs")
 
-;; For more info on how to define this stuff check `defface'
-(let ((class '((class color) (min-colors 89)))
-      (red          "#dc322f")
-      (blue         "#8cd0d3") ;; - original
+(defcustom sirthias-easy-mode t
+  "Enable easy color mode, simplifies the colouring by removing the highliting for some symbols") 
+  
+(defun alt (regular easy-mode)
+  (if sirthias-easy-mode easy-mode regular))
 
-      (alt-blue     "#469AD3")
+(let ((class '((class color) (min-colors 89)))
+      (red          "#e93532")
       (green        "#859901")
+      (blue         "#8cd0d3") ;; - original
+      (gray         "#93a1a1")
+
       (yellow       "#E2DA47") ;; - original
       (dark-yellow  "#cb4b16")
-
       (light-yellow "#efef8f")
-
-      (space-gray   "#93a1a1")
 
       (fg1     "#eee8d5") ;; Eee8d5 or F7E6D1
       (fg2     "#d9d3c2")
@@ -70,7 +72,7 @@
 
    ;; General
    `(default        ((,class (:foreground ,fg1 :background ,bg1)))) 
-   `(region         ((,class (:foreground ,bg1 :background ,fg1)))) 
+   `(region         ((,class (:background ,bg3)))) 
    `(cursor         ((,class (:background ,fg1)))) 
    `(fringe         ((,class (:background ,bg1))))
    `(hl-line        ((,class (:background ,bg2))))
@@ -85,7 +87,7 @@
    ;; Mode line
    `(mode-line           ((,class (:foreground ,bg1 :background ,fg1 :box nil))))
    `(mode-line-buffer-id ((,class (:foreground ,bg1 :weight      bold))))
-   `(mode-line-inactive  ((,class (:foreground ,bg1 :background ,space-gray :box nil))))
+   `(mode-line-inactive  ((,class (:foreground ,bg1 :background ,gray :box nil))))
    `(mode-line-highlight ((,class (:foreground ,bg1 :background ,bg4))))
 
    ;; Other UI general faces
@@ -99,16 +101,16 @@
    `(isearch-fail ((,class (:foreground ,dark-yellow :background ,bg3 :bold t))))
    
    `(font-lock-builtin-face              ((,class (:foreground ,red))))
-   `(font-lock-comment-face              ((,class (:foreground ,space-gray))))
-   `(font-lock-constant-face             ((,class (:foreground ,light-yellow))))
-   `(font-lock-doc-face                  ((,class (:foreground ,space-gray))))
-   `(font-lock-doc-string-face           ((,class (:foreground ,space-gray))))
-   `(font-lock-function-name-face        ((,class (:foreground ,blue))))
+   `(font-lock-comment-face              ((,class (:foreground ,gray))))
+   `(font-lock-constant-face             ((,class (:foreground ,(alt light-yellow fg1)))))
+   `(font-lock-doc-face                  ((,class (:foreground ,gray))))
+   `(font-lock-doc-string-face           ((,class (:foreground ,gray))))
+   `(font-lock-function-name-face        ((,class (:foreground ,(alt blue fg1)))))
    `(font-lock-keyword-face              ((,class (:foreground ,red))))
-   `(font-lock-negation-char-face        ((,class (:foreground ,yellow))))
+   `(font-lock-negation-char-face        ((,class (:foreground ,(alt yellow fg1)))))
    `(font-lock-string-face               ((,class (:foreground ,green))))
-   `(font-lock-type-face                 ((,class (:foreground ,light-yellow))))
-   `(font-lock-variable-name-face        ((,class (:foreground ,blue))))
+   `(font-lock-type-face                 ((,class (:foreground ,(alt light-yellow fg1)))))
+   `(font-lock-variable-name-face        ((,class (:foreground ,(alt blue fg1)))))
    `(font-lock-warning-face              ((,class (:foreground ,dark-yellow :background ,bg2))))
    `(font-latex-bold-face                ((,class (:bold   t))))
    `(font-latex-italic-face              ((,class (:italic t))))
@@ -187,7 +189,7 @@
    `(macrostep-expansion-highlight-face   ((,class (:background ,bg2))))
    
    ;; Hideshow
-   `(hs-face                              ((,class (:foreground ,space-gray :background ,bg2))))
+   `(hs-face                              ((,class (:foreground ,gray :background ,bg2))))
 
    ;; Others
    `(ac-completion-face                   ((,class (:underline t :foreground ,keyword))))
@@ -214,7 +216,10 @@
    `(magit-branch                         ((,class (:foreground ,const :weight bold))))
    `(magit-log-author                     ((,class (:foreground ,fg3))))
    `(magit-hash                           ((,class (:foreground ,fg2))))
+   
    `(magit-diff-file-header               ((,class (:foreground ,fg2 :background ,bg3))))
+   `(magit-diffstat-added                 ((,class (:foreground ,green))))
+   `(magit-diffstat-removed               ((,class (:foreground ,red))))
 
    ;; Web-Mode
    `(web-mode-builtin-face                ((,class (:inherit ,font-lock-builtin-face))))
