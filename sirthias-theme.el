@@ -3,7 +3,7 @@
 ;; Copyright (C) 2014 , Alexander Ivanov <4lex1v@gmail.com>
 
 ;; Author: Alexander Ivanov <4lex1v@gmail.com>
-;; Version: 0.5.0
+;; Version: 0.5.1
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@
 (defcustom sirthias-easy-mode t
   "Enable easy colour mode, simplifies the colouring by removing the highliting for some symbols") 
 
-(defcustom sirthias-cold-mode t
+(defcustom sirthias-cold-mode nil
   "Use warm or cold colours by default")
 
 (defun alt (regular easy-mode)
@@ -70,13 +70,13 @@
       (keyword (blend "#e93532" 0.77))
       (str     (blend "#859901" 0.65))
       (comment (blend "#93a1a1" 0.75))
+      (warning (blend "#cb4b16" 1.0))
       
-      (const   "#efef8f")
-      (warning "#cb4b16")
-      (builtin "#8cd0d3")
-      (func    "#277082")
-      (type    "#efef8f")
-      (var     "#277082"))
+      (var     (alt "#277082" fg1))
+      (const   (alt "#efef8f" fg1))
+      (type    (alt "#efef8f" fg1))
+      (func    (alt "#277082" fg1))
+      (builtin (alt "#8cd0d3" fg1)))
             
   (custom-theme-set-faces
    'sirthias
@@ -92,7 +92,7 @@
    `(header-line                         ((,class (:background ,bg3))))
    `(icompletep-determined               ((,class (:foreground ,builtin))))
    `(slime-repl-inputed-output-face      ((,class (:foreground ,type))))
-   `(trailing-whitespace                 ((,class (:foreground nil :background ,warning))))
+   `(trailing-whitespace                 ((,class (:foreground ,bg1 :background ,warning))))
    `(info-quoted-name                    ((,class (:foreground ,builtin))))
    `(info-string                         ((,class (:foreground ,str))))
    `(ffap                                ((,class (:foreground ,fg4))))
@@ -111,11 +111,26 @@
    `(mode-line-highlight                 ((,class (:foreground ,bg1 :background ,bg1))))
    `(mode-line-emphasis                  ((,class (:foreground ,bg1 :background ,fg1 :box nil))))
    
+   ;; Font Lock
+   `(font-lock-keyword-face              ((,class (:foreground ,keyword))))
+   `(font-lock-comment-face              ((,class (:foreground ,comment))))
+   `(font-lock-builtin-face              ((,class (:foreground ,keyword))))
+   `(font-lock-constant-face             ((,class (:foreground ,const))))
+   `(font-lock-doc-face                  ((,class (:foreground ,comment))))
+   `(font-lock-doc-string-face           ((,class (:foreground ,comment))))
+   `(font-lock-function-name-face        ((,class (:foreground ,builtin))))
+   `(font-lock-type-face                 ((,class (:foreground ,const))))
+   `(font-lock-preprocessor-face         ((,class (:foreground ,keyword))))
+   `(font-lock-negation-char-face        ((,class (:foreground ,const))))
+   `(font-lock-string-face               ((,class (:foreground ,str))))
+   `(font-lock-variable-name-face        ((,class (:foreground ,builtin))))
+   `(font-lock-warning-face              ((,class (:foreground ,keyword :underline t))))
+   
+   
    ;; Spaceline
    ;; `(spaceline-hud                    ((,class (:foreground ))))
 
    ;; Other UI general faces
-   `(menu                                ((,class (:foreground ,fg1 :background ,bg1))))
    `(minibuffer-prompt                   ((,class (:foreground ,keyword :bold t))))
    `(linum                               ((,class (:foreground ,fg1 :background ,bg2))))
    `(show-paren-match-face               ((,class (:foreground ,bg1 :background ,fg4))))
@@ -123,24 +138,6 @@
    ;; ISearch
    `(isearch                             ((,class (:foreground ,const :background ,bg3 :underline t))))
    `(isearch-fail                        ((,class (:foreground ,warning :background ,bg3 :bold t))))
-   
-   ;; Font Lock
-   `(font-lock-keyword-face              ((,class (:foreground ,keyword))))
-   `(font-lock-comment-face              ((,class (:foreground ,comment :background ,bg1))))
-   `(font-lock-builtin-face              ((,class (:foreground ,keyword :background ,bg1))))
-   `(font-lock-constant-face             ((,class (:foreground ,(alt const fg1) :background ,bg1))))
-   
-   `(font-lock-doc-face                  ((,class (:foreground ,comment :background ,bg1))))
-   `(font-lock-doc-string-face           ((,class (:foreground ,comment :background ,bg1))))
-   
-   `(font-lock-function-name-face        ((,class (:foreground ,(alt builtin fg1) :background ,bg1))))
-   `(font-lock-type-face                 ((,class (:foreground ,(alt const fg1) :background ,bg1))))
-   `(font-lock-preprocessor-face         ((,class (:foreground ,keyword :background ,bg1))))
-
-   `(font-lock-negation-char-face        ((,class (:foreground ,(alt const fg1) :background ,bg1))))
-   `(font-lock-string-face               ((,class (:foreground ,str))))
-   `(font-lock-variable-name-face        ((,class (:foreground ,(alt builtin fg1) :background ,bg1))))
-   `(font-lock-warning-face              ((,class (:foreground ,keyword :underline t :background ,bg1))))
    
    ;; Latex
    `(font-latex-bold-face                ((,class (:bold   t))))
@@ -192,26 +189,26 @@
    `(helm-selection                      ((,class (:background ,bg3)))) ;; Used to highlight the line in helm buffers
    `(helm-selection-line                 ((,class (:background ,bg1)))) ;; Used in helm-current-buffer
    `(helm-candidate-number               ((,class (:foreground ,bg1 :background ,fg1))))
-   `(helm-separator                      ((,class (:foreground ,type :background ,bg1))))
-   `(helm-time-zone-current              ((,class (:foreground ,builtin :background ,bg1))))
-   `(helm-time-zone-home                 ((,class (:foreground ,type :background ,bg1))))
-   `(helm-buffer-not-saved               ((,class (:foreground ,type :background ,bg1))))
-   `(helm-buffer-process                 ((,class (:foreground ,builtin :background ,bg1))))
-   `(helm-buffer-saved-out               ((,class (:foreground ,fg1 :background ,bg1))))
-   `(helm-buffer-size                    ((,class (:foreground ,fg1 :background ,bg1))))
-   `(helm-ff-directory                   ((,class (:foreground ,str :background ,bg1 :weight bold))))
-   `(helm-ff-file                        ((,class (:foreground ,fg1 :background ,bg1 :weight normal))))
-   `(helm-ff-executable                  ((,class (:foreground ,fg1 :background ,bg1 :weight normal))))
-   `(helm-ff-invalid-symlink             ((,class (:foreground ,fg1 :background ,bg1 :weight bold))))
-   `(helm-ff-symlink                     ((,class (:foreground ,keyword :background ,bg1 :weight bold))))
+   `(helm-separator                      ((,class (:foreground ,type))))
+   `(helm-time-zone-current              ((,class (:foreground ,builtin))))
+   `(helm-time-zone-home                 ((,class (:foreground ,type))))
+   `(helm-buffer-not-saved               ((,class (:foreground ,type))))
+   `(helm-buffer-process                 ((,class (:foreground ,builtin))))
+   `(helm-buffer-saved-out               ((,class (:foreground ,fg1))))
+   `(helm-buffer-size                    ((,class (:foreground ,fg1))))
+   `(helm-ff-directory                   ((,class (:foreground ,str :weight bold))))
+   `(helm-ff-file                        ((,class (:foreground ,fg1 :weight normal))))
+   `(helm-ff-executable                  ((,class (:foreground ,fg1 :weight normal))))
+   `(helm-ff-invalid-symlink             ((,class (:foreground ,fg1 :weight bold))))
+   `(helm-ff-symlink                     ((,class (:foreground ,keyword :weight bold))))
    `(helm-ff-prefix                      ((,class (:foreground ,bg1 :background ,keyword :weight normal))))
-   `(helm-grep-cmd-line                  ((,class (:foreground ,fg1 :background ,bg1))))
-   `(helm-grep-file                      ((,class (:foreground ,fg1 :background ,bg1))))
-   `(helm-grep-finish                    ((,class (:foreground ,fg2 :background ,bg1))))
-   `(helm-grep-lineno                    ((,class (:foreground ,fg1 :background ,bg1))))
+   `(helm-grep-cmd-line                  ((,class (:foreground ,fg1))))
+   `(helm-grep-file                      ((,class (:foreground ,fg1))))
+   `(helm-grep-finish                    ((,class (:foreground ,fg2))))
+   `(helm-grep-lineno                    ((,class (:foreground ,fg1))))
    `(helm-grep-match                     ((,class (:foreground nil :background nil :inherit helm-match))))
-   `(helm-grep-running                   ((,class (:foreground ,func :background ,bg1))))
-   `(helm-moccur-buffer                  ((,class (:foreground ,func :background ,bg1))))
+   `(helm-grep-running                   ((,class (:foreground ,func))))
+   `(helm-moccur-buffer                  ((,class (:foreground ,func))))
 
    ;; Evil
    `(evil-ex-substitute-matches          ((,class (:foreground ,keyword :underline t :strike-through t))))
@@ -250,7 +247,7 @@
    `(company-tooltip                     ((,class (:foreground ,bg1 :background ,fg1))))
    `(company-tooltip-selection           ((,class (:foreground ,bg1 :background ,fg1))))
    `(company-tooltip-common              ((,class (:foreground ,bg1 :background ,fg1))))
-   `(company-tooltip-common-selection    ((,class (:foreground ,gray :underline t))))
+   `(company-tooltip-common-selection    ((,class (:background ,fg1 :underline t))))
    `(company-scrollbar-bg                ((,class (:background ,fg1))))
    `(company-scrollbar-fg                ((,class (:background ,fg1))))
    `(company-template-field              ((,class (:inherit region))))
