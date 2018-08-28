@@ -57,10 +57,10 @@
    rate))
 
 (let* ((class '((class color) (min-colors 89)))
-      (fg1     (blend2 "#eee8d5" "#e6d3b4" 0.20))
-      (fg2     (blend2 "#d9d3c2" "#e3ceab" 0.20))
-      (fg3     (blend2 "#c4bfaf" "#c7b597" 0.20))
-      (fg4     (blend2 "#afab9d" "#a69982" 0.20))
+      (fg1     (blend2 "#eee8d5" "#e6d3b4" 0.00))
+      (fg2     (blend2 "#d9d3c2" "#e3ceab" 0.00))
+      (fg3     (blend2 "#c4bfaf" "#c7b597" 0.00))
+      (fg4     (blend2 "#afab9d" "#a69982" 0.00))
       
       (bg1     (blend "#002b36" 0.98))
       (bg2     (blend "#183944" 0.98))
@@ -70,7 +70,8 @@
       (keyword (blend "#e93532" 0.77))
       (str     (blend "#859901" 0.65))
       (comment (blend "#93a1a1" 0.75))
-      (warning (blend "#cb4b16" 1.0))
+      (warning (blend "#cb4b16" 0.7))
+      (link    (blend "#efef8f" 0.7))
       
       (var     (alt "#277082" fg1))
       (const   (alt "#efef8f" fg1))
@@ -125,10 +126,6 @@
    `(font-lock-string-face               ((,class (:foreground ,str))))
    `(font-lock-variable-name-face        ((,class (:foreground ,builtin))))
    `(font-lock-warning-face              ((,class (:foreground ,keyword :underline t))))
-   
-   
-   ;; Spaceline
-   ;; `(spaceline-hud                    ((,class (:foreground ))))
 
    ;; Other UI general faces
    `(minibuffer-prompt                   ((,class (:foreground ,keyword :bold t))))
@@ -159,7 +156,7 @@
    `(org-hide                            ((,class (:foreground ,fg4))))
    `(org-date                            ((,class (:underline t :foreground ,builtin) )))
    `(org-footnote                        ((,class (:underline t :foreground ,fg4))))
-   `(org-link                            ((,class (:underline t :foreground ,type))))
+   `(org-link                            ((,class (:underline t :foreground ,link))))
    `(org-special-keyword                 ((,class (:foreground ,func))))
    `(org-verbatim                        ((,class (:foreground ,builtin :bold t))))
    `(org-block                           ((,class (:foreground ,fg3))))
