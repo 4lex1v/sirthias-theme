@@ -44,40 +44,35 @@
 (defun alt (regular easy-mode)
   (if sirthias-easy-mode easy-mode regular))
 
-(defun blend (colour rate)
-  (colour-blend
-   (color-values colour)
-   (color-values fg1)
-   rate))
-
-(defun blend2 (c1 c2 rate)
+(defun blend (c1 c2 rate)
   (colour-blend
    (color-values c1)
    (color-values c2)
    rate))
 
 (let* ((class '((class color) (min-colors 89)))
-      (fg1     (blend2 "#eee8d5" "#e6d3b4" 0.00))
-      (fg2     (blend2 "#d9d3c2" "#e3ceab" 0.00))
-      (fg3     (blend2 "#c4bfaf" "#c7b597" 0.00))
-      (fg4     (blend2 "#afab9d" "#a69982" 0.00))
-      
-      (bg1     (blend "#002b36" 0.98))
-      (bg2     (blend "#183944" 0.98))
-      (bg3     (blend "#2b4852" 0.98))
-      (bg4     (blend "#3e5861" 0.98))
+       (fg1     (blend "#eee8d5" "#eabc71" 0.60))
+       (fg2     (blend "#d9d3c2" "#e3ceab" 0.60))
+       (fg3     (blend "#c4bfaf" "#c7b597" 0.60))
+       (fg4     (blend "#afab9d" "#a69982" 0.60))
+       
+       (bg1     (blend "#002b36" fg1 0.96))
+       (bg2     (blend "#183944" fg2 0.96))
+       (bg3     (blend "#2b4852" fg3 0.96))
+       (bg4     (blend "#3e5861" fg4 0.96))
 
-      (keyword (blend "#e93532" 0.77))
-      (str     (blend "#859901" 0.65))
-      (comment (blend "#93a1a1" 0.75))
-      (warning (blend "#cb4b16" 0.7))
-      (link    (blend "#efef8f" 0.7))
-      
-      (var     (alt "#277082" fg1))
-      (const   (alt "#efef8f" fg1))
-      (type    (alt "#efef8f" fg1))
-      (func    (alt "#277082" fg1))
-      (builtin (alt "#8cd0d3" fg1)))
+       (keyword (blend "#e93532" fg1 0.70))
+       (str     (blend "#859901" fg1 0.60))
+       (comment (blend "#93a1a1" fg1 0.60))
+       (warning (blend "#cb4b16" fg1 0.60))
+
+       (var     (alt "#277082" fg1))
+       (func    (alt       var fg1))
+       (builtin (alt       var fg1))
+
+       (link    (blend "#efef8f" fg1 0.90))
+       (const   (alt       link fg1))
+       (type    (alt       link fg1)))
             
   (custom-theme-set-faces
    'sirthias
