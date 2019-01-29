@@ -3,7 +3,7 @@
 ;; Copyright (C) 2014 , Aleksandr Ivanov <4lex1v@gmail.com>
 
 ;; Author: Aleksandr Ivanov <4lex1v@gmail.com>
-;; Version: 0.6.0
+;; Version: 0.6.1
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -54,10 +54,10 @@
    rate))
 
 (let* ((class '((class color) (min-colors 89)))
-       (fg1     (blend "#eee8d5" "#eabc71" (temp 0.98 0.35)))
-       (fg2     (blend "#d9d3c2" "#e3ceab" (temp 0.98 0.35)))
-       (fg3     (blend "#c4bfaf" "#c7b597" (temp 0.98 0.35)))
-       (fg4     (blend "#afab9d" "#a69982" (temp 0.98 0.35)))
+       (fg1     (blend "#eee8d5" "#eabc71" (temp 0.98 0.40)))
+       (fg2     (blend "#d9d3c2" "#e3ceab" (temp 0.98 0.40)))
+       (fg3     (blend "#c4bfaf" "#c7b597" (temp 0.98 0.40)))
+       (fg4     (blend "#afab9d" "#a69982" (temp 0.98 0.40)))
        
        (bg1     (blend "#002b36" (temp fg1 "#ff0000") (temp 0.96 0.98)))
        (bg2     (blend "#183944" (temp fg2 "#ff0000") (temp 0.96 0.98)))
@@ -131,6 +131,9 @@
    ;; ISearch
    `(isearch                             ((,class (:foreground ,const :background ,bg3 :underline t))))
    `(isearch-fail                        ((,class (:foreground ,warning :background ,bg3 :bold t))))
+
+   ;; Dired
+   `(dired-directory                     ((,class (:foreground ,keyword :underline t))))
    
    ;; Latex
    `(font-latex-bold-face                ((,class (:bold   t))))
