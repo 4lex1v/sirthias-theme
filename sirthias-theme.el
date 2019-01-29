@@ -1,9 +1,9 @@
 ;;; sirthias-theme.el --- Emacs 24 theme with a dark background.
 
-;; Copyright (C) 2014 , Alexander Ivanov <4lex1v@gmail.com>
+;; Copyright (C) 2014 , Aleksandr Ivanov <4lex1v@gmail.com>
 
-;; Author: Alexander Ivanov <4lex1v@gmail.com>
-;; Version: 0.5.1
+;; Author: Aleksandr Ivanov <4lex1v@gmail.com>
+;; Version: 0.6.0
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -41,8 +41,11 @@
 (defcustom sirthias-cold-mode nil
   "Use warm or cold colours by default")
 
-(defun alt (regular easy-mode)
+(defsubst alt (regular easy-mode)
   (if sirthias-easy-mode easy-mode regular))
+
+(defsubst temp (if-cold if-warm)
+  (if sirthias-cold-mode if-cold if-warm))
 
 (defun blend (c1 c2 rate)
   (colour-blend
@@ -51,20 +54,20 @@
    rate))
 
 (let* ((class '((class color) (min-colors 89)))
-       (fg1     (blend "#eee8d5" "#eabc71" 0.60))
-       (fg2     (blend "#d9d3c2" "#e3ceab" 0.60))
-       (fg3     (blend "#c4bfaf" "#c7b597" 0.60))
-       (fg4     (blend "#afab9d" "#a69982" 0.60))
+       (fg1     (blend "#eee8d5" "#eabc71" (temp 0.98 0.35)))
+       (fg2     (blend "#d9d3c2" "#e3ceab" (temp 0.98 0.35)))
+       (fg3     (blend "#c4bfaf" "#c7b597" (temp 0.98 0.35)))
+       (fg4     (blend "#afab9d" "#a69982" (temp 0.98 0.35)))
        
-       (bg1     (blend "#002b36" fg1 0.96))
-       (bg2     (blend "#183944" fg2 0.96))
-       (bg3     (blend "#2b4852" fg3 0.96))
-       (bg4     (blend "#3e5861" fg4 0.96))
+       (bg1     (blend "#002b36" (temp fg1 "#ff0000") (temp 0.96 0.98)))
+       (bg2     (blend "#183944" (temp fg2 "#ff0000") (temp 0.96 0.98)))
+       (bg3     (blend "#2b4852" (temp fg3 "#ff0000") (temp 0.96 0.98)))
+       (bg4     (blend "#3e5861" (temp fg4 "#ff0000") (temp 0.96 0.98)))
 
        (keyword (blend "#e93532" fg1 0.70))
-       (str     (blend "#859901" fg1 0.60))
-       (comment (blend "#93a1a1" fg1 0.60))
-       (warning (blend "#cb4b16" fg1 0.60))
+       (str     (blend "#859901" fg1 0.65))
+       (comment (blend "#93a1a1" (temp bg1 fg1) 0.85))
+       (warning (blend "#cb4b16" keyword 0.65))
 
        (var     (alt "#277082" fg1))
        (func    (alt       var fg1))
@@ -96,15 +99,13 @@
 
    ;; States
    `(success                             ((,class (:foreground ,str))))
-   `(warning                             ((,class (:foreground ,const))))
+   `(warning                             ((,class (:foreground ,warning))))
    `(error                               ((,class (:foreground ,keyword))))
 
    ;; Mode line
    `(mode-line                           ((,class (:foreground ,bg1 :background ,fg1 :box nil))))
-   `(mode-line-buffer-id-inactive        ((,class (:foreground ,bg1 :background ,comment :box nil))))
-   `(mode-line-buffer-id                 ((,class (:foreground ,bg1 :background ,fg1 :weight bold))))
    `(mode-line-inactive                  ((,class (:foreground ,bg1 :background ,comment :box nil))))
-   `(mode-line-highlight                 ((,class (:foreground ,bg1 :background ,bg1))))
+   `(mode-line-highlight                 ((,class (:foreground ,fg1 :background ,bg1))))
    `(mode-line-emphasis                  ((,class (:foreground ,bg1 :background ,fg1 :box nil))))
    
    ;; Font Lock
@@ -145,7 +146,7 @@
    `(org-checkbox-statistics-todo        ((,class (:bold t :foreground ,keyword))))
    `(org-checkbox-statistics-done        ((,class (:bold t :foreground ,str))))
    `(org-scheduled                       ((,class (:foreground ,fg1))))
-   `(org-scheduled-today                 ((,class (:inherite 'org-scheduled))))
+   `(org-scheduled-today                 ((,class (:inherit 'org-scheduled))))
    `(org-upcoming-deadline               ((,class (:underline t))))
    `(org-code                            ((,class (:foreground ,fg2))))
    `(org-hide                            ((,class (:foreground ,fg4))))
@@ -272,10 +273,5 @@
                (file-name-as-directory (file-name-directory load-file-name))))
 
 (provide-theme 'sirthias)
-
-;; Local Variables:
-;; no-byte-compile: t
-;; eval: (rainbow-mode)
-;; End:
 
 ;;; sirthias-theme.el ends here
