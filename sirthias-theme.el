@@ -3,7 +3,7 @@
 ;; Copyright (C) 2014 , Aleksandr Ivanov <4lex1v@gmail.com>
 
 ;; Author: Aleksandr Ivanov <4lex1v@gmail.com>
-;; Version: 0.6.1
+;; Version: 0.6.2
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -256,6 +256,42 @@
    `(elfeed-search-title-face            ((,class (:foreground ,comment))))
    `(elfeed-search-unread-title-face     ((,class (:foreground ,fg1))))
    
+   ;; Mardown
+   `(markdown-markup-face                ((,class (:foreground ,comment :background ,bg1))))
+   `(markdown-list-face                  ((,class (:foreground ,comment :background ,bg1))))
+   `(markdown-link-face                  ((,class (:foreground ,str :background ,bg1))))
+   `(markdown-url-face                   ((,class (:foreground ,keyword :background ,bg1))))
+   `(markdown-italic-face                ((,class (:foreground ,fg1 :background ,bg1))))
+   `(markdown-bold-face                  ((,class (:foreground ,fg1 :background ,bg1))))
+   `(markdown-strike-through-face        ((,class (:foreground ,fg1 :background ,bg1))))
+   `(markdown-header-rule-face           ((,class (:foreground ,comment :background ,bg1))))
+   `(markdown-header-delimiter-face      ((,class (:foreground ,comment :background ,bg1))))
+   `(markdown-header-face-1              ((,class (:foreground ,comment :background ,bg1))))
+   `(markdown-header-face-2              ((,class (:foreground ,comment :background ,bg1))))
+   `(markdown-header-face-3              ((,class (:foreground ,comment :background ,bg1))))
+   `(markdown-blockquote-face            ((,class (:foreground ,fg1 :background ,bg1))))
+   `(markdown-code-face                  ((,class (:foreground ,fg1 :background ,bg1))))
+   `(markdown-code-face                  ((,class (:foreground ,fg1 :background ,bg1))))
+   `(markdown-inline-code-face           ((,class (:foreground ,fg1 :background ,bg1))))
+   `(markdown-pre-face                   ((,class (:foreground ,fg1 :background ,bg1))))
+   `(markdown-language-keyword-face      ((,class (:foreground ,fg1 :background ,bg1))))
+   `(markdown-language-info-face         ((,class (:foreground ,fg1 :background ,bg1))))
+   `(markdown-missing-link-face          ((,class (:foreground ,fg1 :background ,bg1))))
+   `(markdown-reference-face             ((,class (:foreground ,fg1 :background ,bg1))))
+   `(markdown-footnote-face              ((,class (:foreground ,fg1 :background ,bg1))))
+   `(markdown-footnote-marker-face       ((,class (:foreground ,fg1 :background ,bg1))))
+   `(markdown-footnote-text-face         ((,class (:foreground ,fg1 :background ,bg1))))
+   `(markdown-plain-url-face             ((,class (:foreground ,fg1 :background ,bg1))))
+   `(markdown-link-title-face            ((,class (:foreground ,fg1 :background ,bg1))))
+   `(markdown-line-break-face            ((,class (:foreground ,fg1 :background ,bg1))))
+   `(markdown-comment-face               ((,class (:foreground ,fg1 :background ,bg1))))
+   `(markdown-math-face                  ((,class (:foreground ,fg1 :background ,bg1))))
+   `(markdown-metadata-key-face          ((,class (:foreground ,fg1 :background ,bg1))))
+   `(markdown-metadata-value-face        ((,class (:foreground ,fg1 :background ,bg1))))
+   `(markdown-gfm-checkbox-face          ((,class (:foreground ,fg1 :background ,bg1))))
+   `(markdown-highlight-face             ((,class (:foreground ,fg1 :background ,bg1))))
+   `(markdown-hr-face                    ((,class (:foreground ,fg1 :background ,bg1))))
+
    ;; Web-Mode
    `(web-mode-keyword-face               ((,class (:foreground ,keyword))))
    `(web-mode-string-face                ((,class (:foreground ,str))))
