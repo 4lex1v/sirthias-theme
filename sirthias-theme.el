@@ -54,10 +54,10 @@
    rate))
 
 (let* ((class '((class color) (min-colors 89)))
-       (fg1     (blend "#eee8d5" "#eabc71" (temp 0.98 0.40)))
-       (fg2     (blend "#d9d3c2" "#e3ceab" (temp 0.98 0.40)))
-       (fg3     (blend "#c4bfaf" "#c7b597" (temp 0.98 0.40)))
-       (fg4     (blend "#afab9d" "#a69982" (temp 0.98 0.40)))
+       (fg1     (blend "#eee8d5" "#eabc71" (temp 0.98 0.45)))
+       (fg2     (blend "#d9d3c2" "#e3ceab" (temp 0.98 0.45)))
+       (fg3     (blend "#c4bfaf" "#c7b597" (temp 0.98 0.45)))
+       (fg4     (blend "#afab9d" "#a69982" (temp 0.98 0.45)))
        
        (bg1     (blend "#002b36" (temp fg1 "#ff0000") (temp 0.96 0.98)))
        (bg2     (blend "#183944" (temp fg2 "#ff0000") (temp 0.96 0.98)))
@@ -67,7 +67,7 @@
        (keyword (blend "#e93532" fg1 0.70))
        (str     (blend "#859901" fg1 0.65))
        (comment (blend "#93a1a1" (temp bg1 fg1) 0.85))
-       (warning (blend "#cb4b16" keyword 0.65))
+       (warning (blend "#FE9502" keyword 0.65))
 
        (var     (alt "#277082" fg1))
        (func    (alt       var fg1))
@@ -149,7 +149,8 @@
    `(org-checkbox-statistics-todo        ((,class (:bold t :foreground ,keyword))))
    `(org-checkbox-statistics-done        ((,class (:bold t :foreground ,str))))
    `(org-scheduled                       ((,class (:foreground ,fg1))))
-   `(org-scheduled-today                 ((,class (:inherit 'org-scheduled))))
+   `(org-scheduled-today                 ((,class (:inherit org-scheduled))))
+   `(org-scheduled-previously            ((,class (:foreground ,warning))))
    `(org-upcoming-deadline               ((,class (:underline t))))
    `(org-code                            ((,class (:foreground ,fg2))))
    `(org-hide                            ((,class (:foreground ,fg4))))
@@ -192,7 +193,7 @@
    `(helm-buffer-process                 ((,class (:foreground ,builtin))))
    `(helm-buffer-saved-out               ((,class (:foreground ,fg1))))
    `(helm-buffer-size                    ((,class (:foreground ,fg1))))
-   `(helm-ff-directory                   ((,class (:foreground ,str :weight bold))))
+   `(helm-ff-directory                   ((,class (:foreground ,keyword :underline t :weight bold))))
    `(helm-ff-file                        ((,class (:foreground ,fg1 :weight normal))))
    `(helm-ff-executable                  ((,class (:foreground ,fg1 :weight normal))))
    `(helm-ff-invalid-symlink             ((,class (:foreground ,fg1 :weight bold))))
@@ -217,9 +218,9 @@
    `(hs-face                             ((,class (:foreground ,comment :background ,bg2))))
 
    ;; Magit
-   `(magit-process-ok                    ((,class (:foreground ,fg1))))
+   `(magit-section-heading               ((,class (:foreground ,keyword :weight bold :underline t))))
+   `(magit-hash                          ((,class (:foreground ,keyword))))
    `(magit-item-highlight                ((,class (:background ,bg3))))
-   `(magit-section-heading               ((,class (:foreground ,keyword :weight bold))))
    `(magit-hunk-heading                  ((,class (:background ,bg3))))
    `(magit-section-highlight             ((,class (:background ,bg2))))
    `(magit-hunk-heading-highlight        ((,class (:background ,bg3))))
@@ -230,13 +231,13 @@
    `(magit-process-ng                    ((,class (:foreground ,warning :weight bold))))
    `(magit-branch                        ((,class (:foreground ,const :weight bold))))
    `(magit-log-author                    ((,class (:foreground ,fg3))))
-   `(magit-hash                          ((,class (:foreground ,fg2))))
    `(magit-diff-file-header              ((,class (:foreground ,fg2 :background ,bg3))))
    `(magit-diffstat-added                ((,class (:foreground ,str))))
    `(magit-diffstat-removed              ((,class (:foreground ,keyword))))
 
    ;; Eshell
    `(eshell-prompt                       ((,class (:foreground ,keyword))))
+   `(eshell-ls-directory                 ((,class (:foreground ,keyword :underline t))))
    
    ;; Company
    `(company-echo-common                 ((,class (:foreground ,bg1 :background ,fg1))))
