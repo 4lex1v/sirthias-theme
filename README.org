@@ -1,0 +1,4 @@
+
+* Sirthias Theme for Emacs
+
+Original theme has been inspired by Mathias [[https://twitter.com/sirthias][@sirthias]] Doenitz slides to his talk on the [[[http://spray.io][Spray Toolkit]], after whom the theme was named. Over time, I've kept changing the original pallet towards a warmer version with a much less highliting, which I find more comforable to work with. 
