@@ -20,6 +20,8 @@
 
 ;; This file is not part of Emacs.
 
+(require 'cl)
+
 (deftheme sirthias "Sirthias color theme for Emacs")
 
 (defun colour-join (r g b)
@@ -35,18 +37,6 @@
             (round (+ (* x alpha) (* y (- 1 alpha)))))
           c1 c2)))  
 
-(defcustom sirthias-easy-mode t
-  "Enable easy colour mode, simplifies the colouring by removing the highliting for some symbols") 
-
-(defcustom sirthias-cold-mode nil
-  "Use warm or cold colours by default")
-
-(defsubst alt (regular easy-mode)
-  (if sirthias-easy-mode easy-mode regular))
-
-(defsubst temp (if-cold if-warm)
-  (if sirthias-cold-mode if-cold if-warm))
-
 (defun blend (c1 c2 rate)
   (colour-blend
    (color-values c1)
@@ -54,28 +44,37 @@
    rate))
 
 (let* ((class '((class color) (min-colors 89)))
-       (fg1     (blend "#eee8d5" "#eabc71" (temp 0.98 0.40)))
-       (fg2     (blend "#d9d3c2" "#e3ceab" (temp 0.98 0.40)))
-       (fg3     (blend "#c4bfaf" "#c7b597" (temp 0.98 0.40)))
-       (fg4     (blend "#afab9d" "#a69982" (temp 0.98 0.40)))
+       (fg1     "#ebc78a")
+       (fg2     "#e1d0b1")
+       (fg3     "#c7b89d")
+       (fg4     "#a89e89")
        
-       (bg1     (blend "#002b36" (temp fg1 "#ff0000") (temp 0.96 0.98)))
-       (bg2     (blend "#183944" (temp fg2 "#ff0000") (temp 0.96 0.98)))
-       (bg3     (blend "#2b4852" (temp fg3 "#ff0000") (temp 0.96 0.98)))
-       (bg4     (blend "#3e5861" (temp fg4 "#ff0000") (temp 0.96 0.98)))
+       (bg1     "#142732")
+       (bg2     "#101740")
+       ;;(bg3     "#292732")
+       (bg3     "#1B3442")
+       (bg4     "#3e5861")
 
-       (keyword (blend "#e93532" fg1 0.70))
-       (str     (blend "#859901" fg1 0.65))
-       (comment (blend "#93a1a1" (temp bg1 fg1) 0.85))
-       (warning (blend "#cb4b16" keyword 0.65))
+       (red (blend "#e93532" fg1 0.70))
+       (keyword red)
+       
+       (green   (blend "#859901" fg1 0.65))
+       (str     green)
 
-       (var     (alt "#277082" fg1))
-       (func    (alt       var fg1))
-       (builtin (alt       var fg1))
+       (gray (blend "#93a1a1" fg1 0.85))
+       (comment gray)
+
+       (orange  (blend "#cb4b16" red 0.65))
+       (warning orange)
+
+       ;;(var     "#277082")
+       (var     fg1)
+       (func    var)
+       (builtin var)
 
        (link    (blend "#efef8f" fg1 0.90))
-       (const   (alt       link fg1))
-       (type    (alt       link fg1)))
+       (const   link)
+       (type    link))
             
   (custom-theme-set-faces
    'sirthias
@@ -98,9 +97,9 @@
    `(lazy-highlight                      ((,class (:foreground ,fg2 :background ,bg3))))
 
    ;; States
-   `(success                             ((,class (:foreground ,str))))
-   `(warning                             ((,class (:foreground ,warning))))
-   `(error                               ((,class (:foreground ,keyword))))
+   `(success                             ((,class (:foreground ,green))))
+   `(warning                             ((,class (:foreground ,orange))))
+   `(error                               ((,class (:foreground ,red))))
 
    ;; Mode line
    `(mode-line                           ((,class (:foreground ,bg1 :background ,fg1 :box nil))))
@@ -109,19 +108,33 @@
    `(mode-line-emphasis                  ((,class (:foreground ,bg1 :background ,fg1 :box nil))))
    
    ;; Font Lock
-   `(font-lock-keyword-face              ((,class (:foreground ,keyword))))
-   `(font-lock-comment-face              ((,class (:foreground ,comment))))
-   `(font-lock-builtin-face              ((,class (:foreground ,keyword))))
-   `(font-lock-constant-face             ((,class (:foreground ,const))))
-   `(font-lock-doc-face                  ((,class (:foreground ,comment))))
-   `(font-lock-doc-string-face           ((,class (:foreground ,comment))))
-   `(font-lock-function-name-face        ((,class (:foreground ,builtin))))
-   `(font-lock-type-face                 ((,class (:foreground ,const))))
-   `(font-lock-preprocessor-face         ((,class (:foreground ,keyword))))
-   `(font-lock-negation-char-face        ((,class (:foreground ,const))))
-   `(font-lock-string-face               ((,class (:foreground ,str))))
-   `(font-lock-variable-name-face        ((,class (:foreground ,builtin))))
-   `(font-lock-warning-face              ((,class (:foreground ,keyword :underline t))))
+   ;; `(font-lock-keyword-face              ((,class (:foreground ,keyword))))
+   ;; `(font-lock-comment-face              ((,class (:foreground ,comment))))
+   ;; `(font-lock-builtin-face              ((,class (:foreground ,keyword))))
+   ;; `(font-lock-constant-face             ((,class (:foreground ,const))))
+   ;; `(font-lock-doc-face                  ((,class (:foreground ,comment))))
+   ;; `(font-lock-doc-string-face           ((,class (:foreground ,comment))))
+   ;; `(font-lock-function-name-face        ((,class (:foreground ,builtin))))
+   ;; `(font-lock-type-face                 ((,class (:foreground ,const))))
+   ;; `(font-lock-preprocessor-face         ((,class (:foreground ,keyword))))
+   ;; `(font-lock-negation-char-face        ((,class (:foreground ,const))))
+   ;; `(font-lock-string-face               ((,class (:foreground ,str))))
+   ;; `(font-lock-variable-name-face        ((,class (:foreground ,builtin))))
+   ;; `(font-lock-warning-face              ((,class (:foreground ,keyword :underline t))))
+
+   `(font-lock-keyword-face              ((,class (:foreground ,red))))
+   `(font-lock-builtin-face              ((,class (:foreground ,red))))
+   `(font-lock-comment-face              ((,class (:foreground ,gray))))
+   `(font-lock-constant-face             ((,class (:foreground ,fg1))))
+   `(font-lock-doc-face                  ((,class (:foreground ,gray))))
+   `(font-lock-doc-string-face           ((,class (:foreground ,gray))))
+   `(font-lock-function-name-face        ((,class (:foreground ,fg1))))
+   `(font-lock-type-face                 ((,class (:foreground ,fg1))))
+   `(font-lock-preprocessor-face         ((,class (:foreground ,red))))
+   `(font-lock-negation-char-face        ((,class (:foreground ,fg1))))
+   `(font-lock-string-face               ((,class (:foreground ,green))))
+   `(font-lock-variable-name-face        ((,class (:foreground ,fg1))))
+   `(font-lock-warning-face              ((,class (:foreground ,orange :underline t))))
 
    ;; Other UI general faces
    `(minibuffer-prompt                   ((,class (:foreground ,keyword :bold t))))
@@ -151,7 +164,7 @@
    `(org-scheduled                       ((,class (:foreground ,fg1))))
    `(org-scheduled-today                 ((,class (:inherit 'org-scheduled))))
    `(org-upcoming-deadline               ((,class (:underline t))))
-   `(org-code                            ((,class (:foreground ,fg2))))
+   `(org-code                            ((,class (:foreground ,fg2 :bold t))))
    `(org-hide                            ((,class (:foreground ,fg4))))
    `(org-date                            ((,class (:underline t :foreground ,builtin) )))
    `(org-footnote                        ((,class (:underline t :foreground ,fg4))))
@@ -162,12 +175,13 @@
    `(org-quote                           ((,class (:inherit org-block :slant italic))))
    `(org-verse                           ((,class (:inherit org-block :slant italic))))
    `(org-warning                         ((,class (:underline t :foreground ,warning))))
-   `(org-ellipsis                        ((,class (:foreground ,builtin))))
+   `(org-ellipsis                        ((,class (:foreground ,keyword))))
    `(org-document-info-keyword           ((,class (:foreground ,func))))
    `(org-sexp-date                       ((,class (:foreground ,fg4))))
    `(org-tag                             ((,class (:foreground ,keyword))))
    `(org-todo                            ((,class (:foreground ,keyword))))
    `(org-done                            ((,class (:foreground ,str))))
+   `(org-ellipsis                        ((,class (:foreground ,bg4))))
 
    ;; Org-agenda
    `(org-agenda-done                     ((,class (:strike-through t :italic t :foreground ,comment))))
@@ -192,12 +206,13 @@
    `(helm-buffer-process                 ((,class (:foreground ,builtin))))
    `(helm-buffer-saved-out               ((,class (:foreground ,fg1))))
    `(helm-buffer-size                    ((,class (:foreground ,fg1))))
-   `(helm-ff-directory                   ((,class (:foreground ,str :weight bold))))
+   `(helm-ff-directory                   ((,class (:foreground ,green :weight bold))))
    `(helm-ff-file                        ((,class (:foreground ,fg1 :weight normal))))
    `(helm-ff-executable                  ((,class (:foreground ,fg1 :weight normal))))
    `(helm-ff-invalid-symlink             ((,class (:foreground ,fg1 :weight bold))))
    `(helm-ff-symlink                     ((,class (:foreground ,keyword :weight bold))))
    `(helm-ff-prefix                      ((,class (:foreground ,bg1 :background ,keyword :weight normal))))
+   `(helm-ff-file-extension              ((,class (:foreground ,fg1 :weight normal))))
    `(helm-grep-cmd-line                  ((,class (:foreground ,fg1))))
    `(helm-grep-file                      ((,class (:foreground ,fg1))))
    `(helm-grep-finish                    ((,class (:foreground ,fg2))))
@@ -235,6 +250,9 @@
    `(magit-diffstat-added                ((,class (:foreground ,str))))
    `(magit-diffstat-removed              ((,class (:foreground ,keyword))))
 
+   `(ido-only-match                      ((,class (:foreground ,str))))
+   `(ido-subdir                          ((,class (:foreground ,fg1 :underline t))))
+   
    ;; Eshell
    `(eshell-prompt                       ((,class (:foreground ,keyword))))
    
